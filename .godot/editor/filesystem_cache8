@@ -1,0 +1,28 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1697919413
+icon.svg::CompressedTexture2D::5832956919855912223::1697577476::1697577482::1::::<><>::
+tiles.tres::MeshLibrary::1051688678643443100::1697919413::0::1::::<><>::
+::res://assets/::1697919332
+floortile.glb::PackedScene::4209384856984750882::1697919330::1697919332::1::::<><>::
+IceBlock.glb::PackedScene::5083692709576474785::1697919926::1697919927::1::::<><>::
+::res://assets/fbx_files/::1697906767
+::res://assets/fbx_files/box_out/::1697906770
+box.gltf::PackedScene::7477511974093414369::1697906767::1697906770::1::::<><>::
+::res://assets/fbx_files/ground1_out/::1697906709
+ground1.gltf::PackedScene::1714582218090284208::1697906671::1697906709::1::::<><>::
+::res://assets/fbx_files/ground_out/::1697907923
+ground.gltf::PackedScene::4373999679125937504::1697906668::1697906709::1::::<><>::
+texture.png::CompressedTexture2D::6194959938333179737::1697578834::1697907923::1::::<><>::
+::res://Scenes/::1697919406
+main.tscn::PackedScene::1764147682640504008::1697919186::0::1::::<><>::uid://dbsgf8u3i2q4e::::res://Scenes/PlayerWater.tscn<>uid://o8pfnw05tu6w::::res://tiles.tres
+PlayerWater.tscn::PackedScene::7266984690667141110::1697918812::0::1::::<><>::res://Scripts/PlayerWater.gd<>uid://ceotw8w766ex2::::res://assets/IceBlock.glb<>res://Scripts/State Machine.gd<>res://Scripts/Falling.gd<>res://Scripts/Move.gd<>res://Scripts/Idle.gd<>res://Scripts/Jump.gd
+tiles.tscn::PackedScene::985814497351411454::1697919406::0::1::::<><>::uid://b08b7omeju483::::res://assets/floortile.glb
+::res://Scripts/::1697906413
+Falling.gd::GDScript::-1::1697763868::0::1::::Falling<>PlayerState<>::
+Grid.gd::GDScript::-1::1697906413::0::1::::<>GridMap<>::
+Idle.gd::GDScript::-1::1697764102::0::1::::Idle<>PlayerState<>::
+Jump.gd::GDScript::-1::1697762599::0::1::::Jump<>PlayerState<>::
+Move.gd::GDScript::-1::1697766852::0::1::::Move<>PlayerState<>::
+PlayerState.gd::GDScript::-1::1697764751::0::1::::PlayerState<>Node<>::
+PlayerWater.gd::GDScript::-1::1697905668::0::1::::PlayerWater<>CharacterBody3D<>::
+State Machine.gd::GDScript::-1::1697762911::0::1::::<>Node<>::

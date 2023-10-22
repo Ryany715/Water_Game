@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbsgf8u3i2q4e"]
+
+[ext_resource type="Script" path="res://PlayerWater.gd" id="1_mix2y"]
+[ext_resource type="PackedScene" uid="uid://dovp41bbpbw35" path="res://assets/Pieces/box_out/box.gltf" id="1_yybvq"]
+[ext_resource type="Script" path="res://State Machine.gd" id="3_4aing"]
+[ext_resource type="Script" path="res://Falling.gd" id="4_aq22w"]
+[ext_resource type="Script" path="res://Move.gd" id="5_h1dob"]
+[ext_resource type="Script" path="res://Idle.gd" id="6_cs7iu"]
+[ext_resource type="Script" path="res://Jump.gd" id="7_3atyx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vra5i"]
+
+[node name="PlayerWater" type="CharacterBody3D"]
+script = ExtResource("1_mix2y")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="character" parent="Pivot" instance=ExtResource("1_yybvq")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.5, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_vra5i")
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_4aing")
+initial_state = NodePath("Idle")
+
+[node name="Falling" type="Node" parent="State Machine" node_paths=PackedStringArray("body")]
+script = ExtResource("4_aq22w")
+body = NodePath("../..")
+
+[node name="Move" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state")]
+script = ExtResource("5_h1dob")
+fall_state = NodePath("../Falling")
+idle_state = NodePath("../Idle")
+jump_state = NodePath("../Jump")
+
+[node name="Idle" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "move_state")]
+script = ExtResource("6_cs7iu")
+fall_state = NodePath("../Falling")
+move_state = NodePath("../Move")
+
+[node name="Jump" type="Node" parent="State Machine"]
+script = ExtResource("7_3atyx")

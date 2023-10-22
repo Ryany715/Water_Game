@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbsgf8u3i2q4e"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerWater.gd" id="1_adr2d"]
+[ext_resource type="PackedScene" uid="uid://ceotw8w766ex2" path="res://assets/IceBlock.glb" id="2_6jxhj"]
+[ext_resource type="Script" path="res://Scripts/State Machine.gd" id="3_0x0fm"]
+[ext_resource type="Script" path="res://Scripts/Falling.gd" id="4_m2gr1"]
+[ext_resource type="Script" path="res://Scripts/Move.gd" id="5_6ccks"]
+[ext_resource type="Script" path="res://Scripts/Idle.gd" id="6_tvojh"]
+[ext_resource type="Script" path="res://Scripts/Jump.gd" id="7_77buj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1naa1"]
+
+[node name="PlayerWater" type="CharacterBody3D"]
+script = ExtResource("1_adr2d")
+accel = 1
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_0x0fm")
+initial_state = NodePath("Idle")
+
+[node name="Falling" type="Node" parent="State Machine" node_paths=PackedStringArray("Player")]
+script = ExtResource("4_m2gr1")
+animation_name = null
+Player = NodePath("../..")
+
+[node name="Move" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "Player")]
+script = ExtResource("5_6ccks")
+fall_state = NodePath("../Falling")
+idle_state = NodePath("../Idle")
+jump_state = NodePath("../Jump")
+Player = NodePath("../..")
+
+[node name="Idle" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "move_state", "Player")]
+script = ExtResource("6_tvojh")
+fall_state = NodePath("../Falling")
+move_state = NodePath("../Move")
+Player = NodePath("../..")
+
+[node name="Jump" type="Node" parent="State Machine" node_paths=PackedStringArray("Player")]
+script = ExtResource("7_77buj")
+animation_name = null
+Player = NodePath("../..")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="IceBlock" parent="Pivot" instance=ExtResource("2_6jxhj")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_1naa1")

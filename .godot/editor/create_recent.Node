@@ -1,0 +1,16 @@
+CollisionShape3D
+MeshInstance3D
+GridMap
+StaticBody3D
+Node3D
+ImporterMeshInstance3D
+CSGMesh3D
+Jump
+Idle
+Move
+Node
+Marker3D
+Camera3D
+CharacterBody3D
+DirectionalLight3D
+MultiMeshInstance3D

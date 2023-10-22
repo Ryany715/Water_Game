@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://0etiwkk7ucr5"]
+
+[ext_resource type="PackedScene" uid="uid://dbsgf8u3i2q4e" path="res://Scenes/PlayerWater.tscn" id="1_ly4v3"]
+[ext_resource type="Script" path="res://Scripts/Grid.gd" id="2_bgloj"]
+[ext_resource type="MeshLibrary" uid="uid://deycdv2pnron7" path="res://tiles.tres" id="2_lrekg"]
+[ext_resource type="Script" path="res://TileGrid.gd" id="2_mnnhy"]
+
+[node name="Main" type="Node"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.28517, 0.958477, 0, -0.958477, -0.28517, -14.331, 19.0865, -6.08002)
+shadow_enabled = true
+
+[node name="Camera Pivot" type="Marker3D" parent="."]
+
+[node name="Camera" type="Camera3D" parent="Camera Pivot"]
+transform = Transform3D(0.601815, 0.564721, -0.564721, 0, 0.707107, 0.707107, 0.798636, -0.425547, 0.425547, -1.5, 3, 5.5)
+
+[node name="TileGridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, 0)
+mesh_library = ExtResource("2_lrekg")
+cell_size = Vector3(1, 1, 1)
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+cell_scale = 0.5
+data = {
+"cells": PackedInt32Array(0, 0, 655360, 1, 0, 655360, 2, 0, 655360, 3, 0, 655360, 4, 0, 655360, 4, 1, 655360, 3, 1, 655360, 2, 1, 655360, 1, 1, 655360, 0, 1, 655360, 0, 2, 655360, 1, 2, 655360, 2, 2, 655360, 3, 2, 655360, 4, 2, 655360, 4, 3, 655360, 3, 3, 655360, 2, 3, 655360, 1, 3, 655360, 0, 3, 655360, 4, 4, 655360, 3, 4, 655360, 2, 4, 655360, 1, 4, 655360, 0, 4, 655360, 5, 4, 655360, 5, 3, 655360, 5, 2, 655360, 5, 1, 655360, 5, 0, 655360, 5, 5, 655360, 4, 5, 655360, 3, 5, 655360, 2, 5, 655360, 1, 5, 655360, 0, 5, 655360)
+}
+script = ExtResource("2_mnnhy")
+
+[node name="PlayerGridMap" type="GridMap" parent="TileGridMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+cell_size = Vector3(1, 1, 1)
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+cell_scale = 0.5
+script = ExtResource("2_bgloj")
+
+[node name="PlayerWater" parent="TileGridMap/PlayerGridMap" instance=ExtResource("1_ly4v3")]
+
+[node name="Enviorment" type="Node3D" parent="."]
