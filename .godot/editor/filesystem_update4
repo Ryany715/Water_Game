@@ -9,3 +9,5 @@ res://assets/tiles.tres
 res://Scripts/Move.gd
 res://Scripts/PlayerWater.gd
 res://TileGrid.gd
+res://Scenes/hallway level.tscn
+res://Scenes/square level.tscn

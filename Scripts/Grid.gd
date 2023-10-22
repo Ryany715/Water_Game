@@ -8,7 +8,7 @@ var z_max: int
 var no_xmove: bool = false
 var no_ymove: bool = false
 var no_zmove: bool = false
-
+var possible_pos: Array
 
 func _ready():
 	for child in get_children():
@@ -27,15 +27,14 @@ func _ready():
 		no_zmove = true
 	
 func is_space(child, direction):
-	var target_pos = map_to_local(child.position) + direction
-	if (target_pos.x <= x_max and target_pos.x > -1) or no_xmove:
-		if (target_pos.z <= z_max and target_pos.z > -1) or no_zmove:
-			if (target_pos.y <= y_max and target_pos.y > -1) or no_ymove:
-				var target_type = get_cell_item(target_pos)
-				match target_type:
-					PlayerType.EMPTY:
-						return update_child_pos(child, child.position, target_pos)
-	
+	possible_pos = tile_grid.get_used_cells()
+	var target_pos = Vector3i(map_to_local(child.position) + direction)
+	if possible_pos.has(target_pos):
+		var target_type = get_cell_item(target_pos)
+		match target_type:
+				PlayerType.EMPTY:
+					return update_child_pos(child, child.position, target_pos)
+
 func update_child_pos(child, start, target):
 	set_cell_item(target, child.type)
 	set_cell_item(start, PlayerType.EMPTY)
